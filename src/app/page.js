@@ -444,7 +444,7 @@ export default function Home() {
             Follow us on social media for updates, designs, and client stories.
           </p>
           <div className={styles.icons}>
-            <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/sitecrafix?igsh=YzljYTk1ODg3Zg==" target="_blank" rel="noopener noreferrer">
               <FaInstagram />
               <span>Instagram</span>
             </a>
