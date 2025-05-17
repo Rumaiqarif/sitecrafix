@@ -24,6 +24,16 @@ html, body {
   overflow-x: initial; /* or remove entirely */
 }
 
+.touchLockContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y; /* Only allow vertical scrolling */
+}
 
 body {
   background-color: var(--background);

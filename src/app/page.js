@@ -9,8 +9,53 @@ export default function Home() {
   const [showMore, setShowMore] = useState(false);
   const [visiblePortfolio, setVisiblePortfolio] = useState(null);
 
+  // COMPLETE ZOOM PREVENTION
   useEffect(() => {
+    // 1. Dark mode toggle
     document.body.classList.toggle('dark', darkMode);
+
+    // 2. Prevent all forms of zooming
+    const preventZoom = (e) => {
+      // Touch prevention
+      if (e.touches && e.touches.length > 1) e.preventDefault();
+      
+      // Keyboard prevention (Ctrl/Cmd + +,-,0)
+      if ((e.ctrlKey || e.metaKey) && 
+         ['+', '-', '0', '=', 'NumpadAdd', 'NumpadSubtract', 'Numpad0'].includes(e.key)) {
+        e.preventDefault();
+      }
+      
+      // Wheel/pinch prevention
+      if (e.ctrlKey && e.type === 'wheel') e.preventDefault();
+    };
+
+    // 3. iOS gesture prevention
+    const preventGesture = (e) => e.preventDefault();
+
+    // 4. Add all event listeners
+    const events = [
+      'keydown', 'wheel', 'touchstart', 'touchmove', 'touchend',
+      'gesturestart', 'gesturechange', 'gestureend'
+    ];
+    
+    events.forEach(event => {
+      document.addEventListener(event, event === 'gesturestart' ? preventGesture : preventZoom, {
+        passive: false
+      });
+    });
+
+    // 5. Lock viewport meta tag
+    const meta = document.querySelector('meta[name="viewport"]');
+    if (meta) {
+      meta.content = 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no';
+    }
+
+    // 6. Cleanup function
+    return () => {
+      events.forEach(event => {
+        document.removeEventListener(event, event === 'gesturestart' ? preventGesture : preventZoom);
+      });
+    };
   }, [darkMode]);
 
   const togglePortfolio = (index) => {
@@ -82,6 +127,7 @@ export default function Home() {
             className={styles.logo}
             width={150}
             height={50}
+            draggable="false"
           />
         </div>
         <button type="button" onClick={() => setDarkMode(!darkMode)} className={styles.toggleButton}>
