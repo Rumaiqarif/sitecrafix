@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/images/dark-logo.png" alt="SiteCrafix Logo" width="200">
+  <img src="public/images/logo-dark.png" alt="SiteCrafix Logo" width="200">
   <h1>SiteCrafix Website</h1>
   <p>Professional Web Design & Development Services</p>
   <p>🌐 <a href="https://topsitecrafix.tech" target="_blank">topsitecrafix.tech</a></p>
