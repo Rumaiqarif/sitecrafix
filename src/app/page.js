@@ -341,7 +341,7 @@ export default function Home() {
 
               <div className={styles.portfolioItem}>
                 <Image 
-                  src="/images/servezlogo2.png" 
+                  src="/images/servezLogo2.png" 
                   alt="ServeEZ project" 
                   width={400}
                   height={300}
